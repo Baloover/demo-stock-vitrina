@@ -7,6 +7,8 @@ from infrastructure.kafka import KafkaConsumer
 from settings import KAFKA_TOPIC_PREFIX
 
 
+
+
 async def stock_price_loader(client: KafkaClient, selected_ticker: str, selected_timeframe: str):
     """
     Функция - загрузчик данных.
@@ -33,7 +35,7 @@ async def stock_price_loader(client: KafkaClient, selected_ticker: str, selected
     live_data_consumer = asyncio.create_task(consumer.consume(chart))
     live_data_consumer.add_done_callback(done_callback)
 
-    while not (live_data_consumer.cancelled() or live_data_consumer.done() or live_data_consumer.exception()):
+    while not (live_data_consumer.cancelled() or live_data_consumer.done()):
         await sleep(1)
 
     return
