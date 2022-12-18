@@ -8,12 +8,11 @@ from pykafka.common import OffsetType
 from pykafka.exceptions import SocketDisconnectedError, LeaderNotAvailable
 from asyncio import sleep
 from streamlit.delta_generator import DeltaGenerator
-
 from settings import TIMEFRAME_MAP
 
 
 class KafkaConsumer:
-    def __init__(self, kafka_client: KafkaClient, topic_prefix: str, ticker: str, timeframe: str = 60):
+    def __init__(self, kafka_client: KafkaClient, ticker: str, timeframe: str = 60):
         self._kafka_client: KafkaClient = kafka_client
         self._timeframe: int = TIMEFRAME_MAP.get(timeframe, 60)
         self._topic = self._kafka_client.topics[ticker]
