@@ -5,7 +5,10 @@ from modules.stock_prices import stock_price_loader, get_available_topics
 from settings import KAFKA_URL
 
 
-st.set_page_config(page_title='Faked stock data demo', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title='Faked stock data demo',
+                   layout="centered",
+                   initial_sidebar_state="auto"
+                   )
 st.title('Faked stock data demo')
 col1, col2 = st.columns(2)
 
