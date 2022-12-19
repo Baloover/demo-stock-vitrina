@@ -3,13 +3,14 @@ import asyncio
 from pykafka import KafkaClient
 from modules.stock_prices import stock_price_loader, get_available_topics
 from settings import KAFKA_URL
-
+from modules.markdown import upper_block
 
 st.set_page_config(page_title='Faked stock data demo',
                    layout="centered",
                    initial_sidebar_state="auto"
                    )
 st.title('Faked stock data demo')
+st.markdown(upper_block, unsafe_allow_html=False)
 col1, col2 = st.columns(2)
 
 loop = asyncio.new_event_loop()
@@ -29,7 +30,7 @@ with col2:
         ('1m', '1h', '4h'),
     )
 
-button = st.button("Load Data")
+button = st.button("Start/stop loadingS")
 
 loop.run_until_complete(stock_price_loader(client, selected_ticker, selected_timeframe))
 
